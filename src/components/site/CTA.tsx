@@ -1,11 +1,22 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, CheckCircle2, MessageSquare } from "lucide-react";
+import { Send, CheckCircle2 } from "lucide-react";
 import { publicApi } from "@/services/api";
 import { useToast } from "@/hooks/use-toast";
 
+const budgets = [
+  "Under ₹25,000",
+  "₹25,000 – ₹85,000",
+  "₹85,000 – ₹2,00,000",
+  "₹2,00,000+",
+  "Not sure yet",
+];
+
 export const CTA = () => {
+  const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
+  const [budget, setBudget] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -18,9 +29,9 @@ export const CTA = () => {
     try {
       await publicApi.submitContact({
         email,
-        message,
-        name: "Website Visitor", // Default since form doesn't have name field
-        service: "General Inquiry" // Default since form doesn't have service field
+        message: `[${company}] [Budget: ${budget}] ${message}`,
+        name: name || "Website Visitor",
+        service: "General Inquiry",
       });
 
       setSuccess(true);
@@ -93,38 +104,67 @@ export const CTA = () => {
                   </p>
                 </motion.div>
               ) : (
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                      Business Email
-                    </label>
+                <div className="space-y-3">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Your Name</label>
+                      <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="John Doe"
+                        className="w-full rounded-xl border border-border-strong bg-surface-1 px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Company</label>
+                      <input
+                        type="text"
+                        value={company}
+                        onChange={(e) => setCompany(e.target.value)}
+                        placeholder="Acme Inc."
+                        className="w-full rounded-xl border border-border-strong bg-surface-1 px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Business Email *</label>
                     <input
-                      id="email"
                       type="email"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@company.com"
-                      className="w-full rounded-xl border border-border-strong bg-surface-1 px-4 py-3 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"
+                      className="w-full rounded-xl border border-border-strong bg-surface-1 px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                      How can we help?
-                    </label>
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Budget Range</label>
+                    <select
+                      value={budget}
+                      onChange={(e) => setBudget(e.target.value)}
+                      className="w-full rounded-xl border border-border-strong bg-surface-1 px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    >
+                      <option value="">Select a range</option>
+                      {budgets.map((b) => (
+                        <option key={b} value={b}>{b}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">How can we help? *</label>
                     <textarea
-                      id="message"
                       required
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Briefly describe your goals or challenges..."
-                      className="min-h-[120px] w-full resize-none rounded-xl border border-border-strong bg-surface-1 px-4 py-3 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"
+                      className="min-h-[100px] w-full resize-none rounded-xl border border-border-strong bg-surface-1 px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={loading}
-                    className="group flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-4 text-sm font-bold text-primary-foreground shadow-glow transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50"
+                    className="group flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3.5 text-sm font-bold text-primary-foreground shadow-glow transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50"
                   >
                     {loading ? "Sending..." : "Request a strategy session"}
                     <Send size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

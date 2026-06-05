@@ -113,7 +113,7 @@ export const CaseStudies = () => {
                   </div>
 
                   <div className="mt-8 flex items-center justify-between pt-6 border-t border-border/40 dark:border-white/5">
-                    <span className="mono text-[9px] font-bold text-muted-foreground/40">{p.metrics?.stack || "Custom Build"}</span>
+                    <span className="mono text-[9px] font-bold text-muted-foreground/40">{p.stack || "Custom Build"}</span>
                     <Link to={`/portfolio/${p.slug}`} className="text-[10px] font-bold uppercase tracking-widest text-foreground hover:text-primary transition-colors">Case Study</Link>
                   </div>
                 </motion.div>

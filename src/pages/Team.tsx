@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Target, Heart, Zap, User } from "lucide-react";
+import { Github, Linkedin, Target, Heart, Zap } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHeader } from "@/components/site/PageHeader";
 import { SEO } from "@/components/site/SEO";
@@ -11,6 +11,14 @@ const iconMap: any = {
   Zap: Zap,
   Heart: Heart,
 };
+
+const getInitials = (name: string) =>
+  name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
 
 const Team = () => {
   const [teamMembers, setTeamMembers] = useState<any[]>([]);
@@ -95,7 +103,7 @@ const Team = () => {
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {loading ? (
-              [1, 2, 3].map(i => (
+              [1, 2, 3, 4, 5, 6].map(i => (
                 <div key={i} className="animate-pulse h-64 rounded-[2rem] bg-zinc-100" />
               ))
             ) : (
@@ -115,7 +123,7 @@ const Team = () => {
                           <img src={m.photo} alt={m.full_name} className="h-full w-full object-cover" />
                         ) : (
                           <div className="flex h-full w-full items-center justify-center text-primary">
-                            <User size={24} />
+                            <span className="text-sm font-bold">{getInitials(m.full_name)}</span>
                           </div>
                         )}
                       </div>

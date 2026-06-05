@@ -43,7 +43,13 @@ export const TrustStrip = () => {
 
         <div className="mt-14 h-px w-full bg-gradient-to-r from-transparent via-border to-transparent" />
 
-        <div className="mt-10">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-10"
+        >
           <LogoLoop
             logos={logoItems}
             speed={80}
@@ -53,7 +59,7 @@ export const TrustStrip = () => {
             fadeOutColor="hsl(var(--surface-1) / 0.4)"
             className="opacity-70 grayscale hover:grayscale-0 transition-all"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

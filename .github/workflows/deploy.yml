@@ -19,7 +19,7 @@ jobs:
             if [ -d ".git" ]; then
               git pull
             else
-              git clone https://github.com/appnity-softwares/appnity.git .
+              git clone https://github.com/appnity-softwares/appnity-frontend.git .
             fi
             
             # Detect docker-compose command

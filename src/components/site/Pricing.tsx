@@ -68,16 +68,16 @@ export const Pricing = () => {
                 )}
 
                 <div className="mb-8">
-                  <h3 className="text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">{t.plan_name}</h3>
+                  <h3 className="text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">{t.plan_name || t.name}</h3>
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground h-10 line-clamp-2 opacity-80">{t.description}</p>
                 </div>
 
                 <div className="mb-10 border-b border-border/50 pb-8">
                   <div className="flex flex-col gap-1">
-                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-primary/60">{t.billing_period}</span>
+                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-primary/60">{t.billing_period || "per sprint"}</span>
                     <div className="flex items-baseline gap-2">
                       <span className="text-3xl font-bold tracking-tight text-foreground">
-                        {t.price_inr > 0 ? `₹${t.price_inr.toLocaleString()}` : "Custom"}
+                        {t.price_inr > 0 ? `₹${t.price_inr.toLocaleString()}` : t.price || "Custom"}
                       </span>
                     </div>
                   </div>

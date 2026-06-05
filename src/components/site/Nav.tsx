@@ -6,7 +6,7 @@ import logo from "@/assets/appnity-logo.png";
 
 const links = [
   { to: "/about", label: "About" },
-  { to: "/capabilities", label: "Capabilities" },
+  { to: "/services", label: "Services" },
   { to: "/portfolio", label: "Portfolio" },
   { to: "/team", label: "Team" },
   { to: "/process", label: "Process" },

@@ -56,12 +56,12 @@ export const Testimonials = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="group relative flex flex-col rounded-2xl border border-border-strong dark:border-white/5 bg-white/70 dark:bg-zinc-900/30 backdrop-blur-sm p-6 transition-all hover:border-primary/30 dark:hover:border-primary/40 hover:shadow-elevated h-full"
               >
                 <Quote className="absolute -top-3 left-6 h-6 w-6 text-primary/20 fill-primary/10 transition-colors group-hover:text-primary/40" />
                 <p className="relative z-10 text-[11px] leading-relaxed text-foreground/80 dark:text-zinc-300 italic flex-1">
-                  "{t.quote}"
+                  "{t.content || t.quote}"
                 </p>
                 <div className="mt-6 border-t border-border/40 dark:border-white/5 pt-4 flex items-center gap-3">
                   <div className="h-7 w-7 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-[10px]">
@@ -69,7 +69,7 @@ export const Testimonials = () => {
                   </div>
                   <div>
                     <div className="font-bold text-[12px] text-foreground dark:text-zinc-200">{t.name}</div>
-                    <div className="text-[8px] uppercase tracking-widest text-primary/70 font-bold">{t.company}</div>
+                    <div className="text-[8px] uppercase tracking-widest text-primary/70 font-bold">{t.role || t.company}</div>
                   </div>
                 </div>
               </motion.div>

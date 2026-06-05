@@ -18,8 +18,8 @@ const AdminDashboard = () => {
         // Note: I might need to adjust based on exact backend response
         setCounts({ 
           projects: stats.total_portfolios || 0, 
-          team: stats.total_team_members || 0, 
-          leads: stats.total_contacts || 0 
+          team: stats.active_team || stats.total_team_members || 0, 
+          leads: stats.total_leads || stats.total_contacts || 0 
         });
       } catch (error) {
         console.error("Failed to fetch dashboard stats:", error);

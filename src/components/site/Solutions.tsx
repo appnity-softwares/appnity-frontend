@@ -71,7 +71,7 @@ export const Solutions = () => {
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
+                  transition={{ duration: 0.5, delay: i * 0.05 }}
                   className="group relative overflow-hidden rounded-2xl border border-border-strong bg-surface-1 p-8 transition-all hover:border-primary/20 hover:shadow-elevated"
                 >
                   <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
