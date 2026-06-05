@@ -2,7 +2,7 @@ import axios from 'axios';
 import { mockData } from './mockData';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8081/api/v1';
-const USE_MOCK = import.meta.env.VITE_USE_MOCK_DATA === 'true';
+const USE_MOCK = (import.meta.env.VITE_USE_MOCK_DATA || '').replace(/^"|"$/g, '') === 'true';
 
 const api = axios.create({
   baseURL: API_URL,
